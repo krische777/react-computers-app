@@ -36,19 +36,19 @@ class App extends React.Component {
     value: "",
   }
   updateSelection = (event) => {
-    const chosenCar = this.data.find(car => car.name === event.target.value)
-    console.log(chosenCar)
-    console.log({ chosenCar })
-    this.setState({ chosenCar })
+    const chosenComputer = this.data.find(computer => computer.name === event.target.value)
+    console.log(chosenComputer)
+    console.log({ chosenComputer })
+    this.setState({ chosenComputer })
   }
 
-  addCar = () => {
+  addComputer = () => {
 
     if (this.state) {
       //console.log(this.state.chosenCar)
       this.props.dispatch({
         type: 'ADD_CAR',
-        payload: this.state.chosenCar
+        payload: this.state.chosenComputer
       })
     }
   }
@@ -57,29 +57,29 @@ class App extends React.Component {
 
     return (<div className="App">
       <div>
-        {this.props.addedCars
-          .map(car =>
+        {this.props.addedComputers
+          .map(computer =>
             <ModelDetails
-              key={car.name}
-              name={car.name}
-              manufacturer={car.manufacturer}
-              year={car.year}
-              origin={car.origin} />)
+              key={computer.name}
+              name={computer.name}
+              manufacturer={computer.manufacturer}
+              year={computer.year}
+              origin={computer.origin} />)
         }
       </div>
 
       <select onChange={this.updateSelection}
-        value={this.state.chosenCar ? this.state.chosenCar.name : ""
+        value={this.state.chosenComputer? this.state.chosenComputer.name : ""
         }>
         <option value={""}>-- pick a model --</option>
 
-        {this.data.map(car =>
-          <option key={car.name} value={car.name}>
-            {car.name} ({car.year})
+        {this.data.map(computer =>
+          <option key={computer.name} value={computer.name}>
+            {computer.name} ({computer.year})
     </option>)}
 
       </select>
-      <button onClick={this.addCar} >Add</button>
+      <button onClick={this.addComputer} >Add</button>
 
     </div>
     );
@@ -87,7 +87,7 @@ class App extends React.Component {
 }
 const mapStateToProps = (state) => {
   return {
-    addedCars: state
+    addedComputers: state
   }
 }
 
